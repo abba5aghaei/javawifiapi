@@ -243,6 +243,16 @@ class LinuxWifiManager extends BaseWifiManager {
             output = getOutput(process);
             inout.log(output);
             File config = new File(System.getProperty("user.home") + "/.jwa/config.abs");
+            if (!config.getParentFile().exists()) {
+                if (!config.getParentFile().createNewFile()) {
+                    throw new Exception("Can't create log file");
+                }
+            }
+            if (!config.exists() || !config.isFile()) {
+                if (!config.createNewFile()) {
+                    throw new Exception("Can't create log file");
+                }
+            }
             PrintWriter writer = new PrintWriter(config);
             writer.write(encode(SSID));
             writer.write("%");
