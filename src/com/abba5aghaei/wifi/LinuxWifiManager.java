@@ -12,7 +12,7 @@ class LinuxWifiManager extends BaseWifiManager {
     @Override
     void initialize() {
         try {
-            File config = new File("config.abs");
+            File config = new File(System.getProperty("user.home") + "/.jwa/config.abs");
             if(config.exists()) {
                 Scanner scanner = new Scanner(new FileInputStream(config));
                 scanner.useDelimiter("%");
@@ -242,7 +242,7 @@ class LinuxWifiManager extends BaseWifiManager {
             process.waitFor();
             output = getOutput(process);
             inout.log(output);
-            File config = new File("config.abs");
+            File config = new File(System.getProperty("user.home") + "/.jwa/config.abs");
             PrintWriter writer = new PrintWriter(config);
             writer.write(encode(SSID));
             writer.write("%");
