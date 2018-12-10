@@ -244,7 +244,7 @@ class LinuxWifiManager extends BaseWifiManager {
             inout.log(output);
             File config = new File(System.getProperty("user.home") + "/.jwa/config.abs");
             if (!config.getParentFile().exists()) {
-                if (!config.getParentFile().createNewFile()) {
+                if (!config.getParentFile().mkdir()) {
                     throw new Exception("Can't create log file");
                 }
             }
